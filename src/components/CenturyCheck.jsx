@@ -35,7 +35,7 @@ const CenturyCheck = (props) => {
       {status == "loading" && !isFetching && <div>{"Loading..."}</div>}
       {bestOffer && bestOffer[0] && (
         <div>
-          <div>{`Best known offer is ${bestOffer[0].mbps} Mbps down at $${bestOffer[0].price}/month`}</div>
+          <div>{`Best known offer from CenturyLink is ${bestOffer[0].mbps} Mbps down at $${bestOffer[0].price}/month`}</div>
           <div
             style={{
               fontWeight: 'lighter'
