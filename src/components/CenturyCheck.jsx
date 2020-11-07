@@ -23,8 +23,9 @@ const CenturyCheck = (props) => {
         gap: "15px",
         padding: "60px",
         backgroundColor: "rgba(0,0,0,.1)",
-        width: "100%",
-        height: "100%",
+        maxWidth: "100vw",
+        maxHeight: "100vh",
+        height: "100vh",
       }}
     >
       <div style={{ opacity: isFetching ? ".6" : "0" }}>
