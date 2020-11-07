@@ -1,21 +1,48 @@
 import React from "react";
+import { PuffLoader } from "react-spinners";
 import useCheck from "../hooks/useCheck.js";
+import useBestOffer from "../hooks/useBestOffer.js";
 
-const mapStyles = {
-  width: "100%",
-  height: "100%",
-};
 const CenturyCheck = (props) => {
   const { status, data, error, isFetching } = useCheck();
+  const { status: bestStatus, data: bestOffer } = useBestOffer();
 
-  let gigaBit = data && data.filter((offer) => offer.downloadSpeedMbps > 900);
-  console.log(status)
+  let gigaBit = [];
+
+  if (data && !bestOffer.fiber) {
+    gigaBit = data && data.filter((offer) => offer.downloadSpeedMbps > 900);
+  } else if (bestOffer && bestOffer.fiber) {
+    gigaBit = [bestOffer];
+  }
+
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+        padding: "60px",
+        backgroundColor: "rgba(0,0,0,.1)",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
+      <div style={{ opacity: isFetching ? ".6" : "0" }}>
+        <PuffLoader size={20} />
+      </div>
+      <h1>Do Chelsea and Will have gigbit ethernet available yet?</h1>
+      {bestStatus != "loading" && <h2>{gigaBit[0] ? "Yes" : "Nope"}</h2>}
       {status == "loading" && !isFetching && <div>{"Loading..."}</div>}
-      {isFetching && <div>{"Updating..."}</div>}
-      {status != "loading" && !isFetching && <div>{gigaBit[0] ? "Yes" : "Nope"}</div>}
-      {data && data[0] && <div>{`Best known offer is ${data[0].downloadSpeedMbps} Mbps`}</div>}
+      {bestOffer && bestOffer[0] && (
+        <div>
+          <div>{`Best known offer is ${bestOffer[0].mbps} Mbps down at $${bestOffer[0].price}/month`}</div>
+          <div
+            style={{
+              fontWeight: 'lighter'
+            }}
+          >"{bestOffer[0].description}"</div>
+        </div>
+      )}
     </div>
   );
 };
