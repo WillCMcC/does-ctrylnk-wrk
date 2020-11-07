@@ -2,15 +2,12 @@ import React from 'react';
 
 import './App.css';
 
-import  SquidMap  from './components/SquidMap.jsx'
+import  CenturyCheck  from './components/CenturyCheck.jsx'
 
 function App() {
   return (
     <div className="main-container">
-      <SquidMap
-      >
-        
-      </SquidMap>
+      <CenturyCheck/>
     </div>
   );
 }
