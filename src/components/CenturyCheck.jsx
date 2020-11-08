@@ -10,7 +10,7 @@ const CenturyCheck = (props) => {
   let gigaBit = [];
 
   if (data && !bestOffer.fiber) {
-    gigaBit = data && data.filter((offer) => offer.downloadSpeedMbps > 900);
+    gigaBit = data && data.filter((offer) => offer.mbps > 900);
   } else if (bestOffer && bestOffer.fiber) {
     gigaBit = [bestOffer];
   }
