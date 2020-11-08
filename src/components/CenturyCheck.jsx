@@ -28,8 +28,18 @@ const CenturyCheck = (props) => {
         height: "100vh",
       }}
     >
-      <div style={{ opacity: isFetching ? ".6" : "0" }}>
+      <div
+        style={{
+          opacity: isFetching ? ".6" : "0",
+          display: "flex",
+          gap: "20px",
+          fontSize: "12px",
+          lineHeight: "28px",
+          flexDirection: window.innerHeight > window.innerWidth ? 'column' : 'row'
+        }}
+      >
         <PuffLoader size={20} />
+        <span>I'm asking Centurylink for updates...</span>
       </div>
       <h1>Do Chelsea and Will have gigbit ethernet available yet?</h1>
       {bestStatus != "loading" && <h2>{gigaBit[0] ? "Yes" : "Nope"}</h2>}
@@ -39,9 +49,11 @@ const CenturyCheck = (props) => {
           <div>{`Best known offer from CenturyLink is ${bestOffer[0].mbps} Mbps down at $${bestOffer[0].price}/month`}</div>
           <div
             style={{
-              fontWeight: 'lighter'
+              fontWeight: "lighter",
             }}
-          >"{bestOffer[0].description}"</div>
+          >
+            "{bestOffer[0].description}"
+          </div>
         </div>
       )}
     </div>
