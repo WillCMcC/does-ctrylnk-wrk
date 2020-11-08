@@ -59,6 +59,7 @@ app.get("/offers", async function (req, res) {
 
   for (let offerIndex in offers.offersList) {
     let offer = offers.offersList[offerIndex];
+    console.log();
     let offerRow;
     try {
       offerRow = await axios.post(
@@ -81,17 +82,15 @@ app.get("/offers", async function (req, res) {
       console.log(error.message);
     }
   }
-  
-  res.json(
-    offers.map((offer) => {
-      return {
-        centurylink_id: offer.catalogId,
-        description: offer.description,
-        price: offer.price,
-        speed: offer.downloadSpeed,
-        mbps: offer.downloadSpeedMbps,
-      };
-    })
-  );
+  offers.offersList = offers.offersList.map((offer) => {
+    return {
+      centurylink_id: offer.catalogId,
+      description: offer.description,
+      price: offer.price,
+      speed: offer.downloadSpeed,
+      mbps: offer.downloadSpeedMbps,
+    };
+  });
+  res.json(offers);
 });
 app.listen(9000);
