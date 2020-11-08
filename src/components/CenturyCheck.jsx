@@ -24,8 +24,8 @@ const CenturyCheck = (props) => {
         padding: "60px",
         backgroundColor: "rgba(0,0,0,.1)",
         maxWidth: "100vw",
-        maxHeight: "100vh",
-        height: "100vh",
+        maxHeight: "calc(100vh - 90px)",
+        minHeight: "calc(100vh - 90px)",
       }}
     >
       <div
@@ -34,11 +34,11 @@ const CenturyCheck = (props) => {
           display: "flex",
           gap: "20px",
           fontSize: "12px",
-          lineHeight: "28px",
+          lineHeight: "23px",
           flexDirection: window.innerHeight > window.innerWidth ? 'column' : 'row'
         }}
       >
-        <PuffLoader size={20} />
+        <PuffLoader size={15} />
         <span>I'm asking Centurylink for updates...</span>
       </div>
       <h1>Do Chelsea and Will have gigbit ethernet available yet?</h1>
@@ -56,6 +56,12 @@ const CenturyCheck = (props) => {
           </div>
         </div>
       )}
+      <span
+        style={{
+          alignSelf: 'flex-end',
+          marginTop: 'auto',
+        }}
+      >Contact: will@apime.dev</span>
     </div>
   );
 };
